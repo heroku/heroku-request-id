@@ -12,6 +12,8 @@ module Heroku::RequestId
 
   def self.patch_client(client)
     def client.heroku_headers
+      headers = {}
+      headers.merge!("Request-Id" => options[:request_id]) if options[:request_id]
       super.merge(headers)
     end
   end
@@ -23,14 +25,10 @@ module Heroku::RequestId
       elsif @connection.respond_to?(:connection)
         @connection.connection
       end
+      headers = {}
+      headers.merge!("Request-Id" => options[:request_id]) if options[:request_id]
       data[:headers].merge!(headers)
     end
-  end
-
-  def self.headers
-    headers = {}
-    headers.merge!("Request-Id" => options[:request_id]) if options[:request_id]
-    headers
   end
 end
 
