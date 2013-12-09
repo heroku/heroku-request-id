@@ -1,6 +1,6 @@
 require "heroku/auth"
 
-Heroku::Command.global_option :request_id, "--request-id", "-z"
+Heroku::Command.global_option :request_id, "--request-id REQUESTID", "-z"
 
 module Heroku::RequestId
   def self.included(base)
