@@ -25,9 +25,9 @@ module Heroku::RequestId
       elsif @connection.respond_to?(:connection)
         @connection.connection
       end
-      # headers = {}
-      # headers.merge!("Request-Id" => options[:request_id]) if options[:request_id]
-      # data[:headers].merge!(headers)
+      headers = {}
+      headers.merge!("Request-Id" => options[:request_id]) if options[:request_id]
+      data[:headers].merge!(headers)
     end
   end
 end
